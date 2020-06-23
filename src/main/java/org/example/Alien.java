@@ -1,17 +1,23 @@
 package org.example;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+
+@Entity(name="alien") // optionally I can give spesific name for table
 public class Alien {
     @Id
     @GeneratedValue
+    @Column(name="id")
     private int aid;
+
+    @Column(name="alian_name")
     private String aname;
+
+    @Column(name="alian_color")
     private String color;
 
+    @Transient // this column will not be created at DB
+    private String planet;
     public Alien(){}
 
     public Alien(String aname, String color) {
