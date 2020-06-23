@@ -1,19 +1,20 @@
 package org.example;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Alien {
     @Id
+    @GeneratedValue
     private int aid;
     private String aname;
     private String color;
 
     public Alien(){}
 
-    public Alien(int aid, String aname, String color) {
-        this.aid = aid;
+    public Alien(String aname, String color) {
         this.aname = aname;
         this.color = color;
     }
