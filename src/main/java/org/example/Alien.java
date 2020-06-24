@@ -7,22 +7,22 @@ import javax.persistence.*;
 public class Alien {
     @Id
     @GeneratedValue
-    @Column(name="id")
     private int aid;
 
-    @Column(name="alian_name")
-    private String aname;
-
-    @Column(name="alian_color")
+    private AlienName aname;
     private String color;
 
     @Transient // this column will not be created at DB
     private String planet;
-    public Alien(){}
 
-    public Alien(String aname, String color) {
-        this.aname = aname;
-        this.color = color;
+    @Override
+    public String toString() {
+        return "Alien{" +
+                "aid=" + aid +
+                ", aname=" + aname +
+                ", color='" + color + '\'' +
+                ", planet='" + planet + '\'' +
+                '}';
     }
 
     public int getAid() {
@@ -33,11 +33,11 @@ public class Alien {
         this.aid = aid;
     }
 
-    public String getAname() {
+    public AlienName getAname() {
         return aname;
     }
 
-    public void setAname(String aname) {
+    public void setAname(AlienName   aname) {
         this.aname = aname;
     }
 
