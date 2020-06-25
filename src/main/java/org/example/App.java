@@ -1,15 +1,13 @@
 package org.example;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.Service;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -22,8 +20,60 @@ public class App
     {
         System.out.println( "Hello Hibernate!" );
 
+        Configuration cfg = new Configuration().configure().addAnnotatedClass(Phone.class);
+        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.openSession();
 
+        session.beginTransaction();
 
+        SQLQuery sqlQuery = session.createSQLQuery("select * from phone where price>80");
+        sqlQuery.addEntity(Phone.class);
+        List query = sqlQuery.list();
+
+        for(Object o : query) System.out.println(o);
+
+        // Native Query
+        SQLQuery sqlQuery1 = session.createSQLQuery("select brand,price from phone where price>80");
+        sqlQuery1.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        List query1 = sqlQuery1.list();
+
+        for(Object o : query1){
+            Map m = (Map) o;
+            System.out.println(m.get("brand")+", price:"+m.get("price"));
+        }
+
+        session.getTransaction().commit();
+
+        /*
+        Configuration cfg = new Configuration().configure().addAnnotatedClass(Phone.class);
+        ServiceRegistry reg = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.openSession();
+
+        session.beginTransaction();
+
+        Random rand = new Random();
+        for (int i=1 ;i<50; i++){
+            Phone s = new Phone();
+            s.setPrice(rand.nextInt(100));
+            s.setBrand("brand-"+i);
+            session.save(s);
+        }
+        session.getTransaction().commit();
+
+        // get all rows as a list
+        Query q = session.createQuery("from Phone"); //// write classes name for the query not table name
+        List<Phone> phoneList= q.list();
+        for(Phone p: phoneList) System.out.println(p);
+
+        // get a spesific row
+        q = session.createQuery("from Phone where id=1"); // id's name comes from class variables not the column at DB
+        Object phone = (Phone) q.uniqueResult();
+        System.out.println(phone);
+        */
+
+        /*  // caching
         Alien alien;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(Alien.class);
@@ -57,7 +107,7 @@ public class App
         query1.setCacheable(true);
         Alien alien3 = (Alien) query1.uniqueResult();
         System.out.println(alien3);
-
+        */
 
         /*
         AlienName alienName = new AlienName();
