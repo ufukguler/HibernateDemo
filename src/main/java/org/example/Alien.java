@@ -1,10 +1,16 @@
 package org.example;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
 
 
 @Entity(name="alien") // optionally I can give spesific name for table
-public class Alien {
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
+public class Alien {                    //READ_ONLY if you don't update the DB
     @Id
     @GeneratedValue
     private int aid;
