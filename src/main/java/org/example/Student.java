@@ -18,7 +18,9 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Laptop> laptops = new ArrayList<>();
 */
-    @ManyToMany(mappedBy = "student")
+    // default is LAZY; lazy dosy not load relationships until invoke it with  a getter
+    // EAGER loads relationships, takes more memory consumption
+    @ManyToMany(mappedBy = "student",fetch = FetchType.EAGER)
     private List<Laptop> laptops = new ArrayList<>();
     public int getRollno() {
         return rollno;
