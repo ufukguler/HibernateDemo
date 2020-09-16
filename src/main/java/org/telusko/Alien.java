@@ -1,4 +1,4 @@
-package org.example;
+package org.telusko;
 
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;

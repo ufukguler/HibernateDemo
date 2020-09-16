@@ -3,6 +3,7 @@
     <option name="myName" value="Project Default" />
     <inspection_tool class="AccessingFieldFromAFinalMethodOfPersistedClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="EmbeddableSubclassesEmbeddable" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="JpaDataSourceORMInspection" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="PersistedClassIsFinal" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>
 </component>

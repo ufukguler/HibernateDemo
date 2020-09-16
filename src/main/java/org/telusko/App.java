@@ -1,14 +1,12 @@
-package org.example;
+package org.telusko;
 
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.Service;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Hello world!

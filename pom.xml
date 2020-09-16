@@ -6,7 +6,11 @@
 
   <groupId>org.example</groupId>
   <artifactId>DemoHibernate</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>many2many</module>
+  </modules>
 
   <name>DemoHibernate</name>
   <!-- FIXME change it to the project's website -->
@@ -99,7 +103,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.2.1</version>
         <configuration>
-          <mainClass>org.example.App</mainClass>
+          <mainClass>org.telusko.App</mainClass>
         </configuration>
       </plugin>
 
